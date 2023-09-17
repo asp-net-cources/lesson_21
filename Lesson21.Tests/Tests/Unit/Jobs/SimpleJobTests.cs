@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Lesson21.Tests.Tests.Unit.Jobs;
 public class SimpleJobTests
 {
-    private readonly LoggerStub<SimpleJob> _logger = new LoggerStub<SimpleJob>();
+    private readonly LoggerMock<SimpleJob> _logger = new LoggerMock<SimpleJob>();
     private SimpleJob _job;
 
     [SetUp]

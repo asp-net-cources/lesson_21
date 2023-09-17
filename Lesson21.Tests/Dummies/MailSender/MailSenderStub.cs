@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lesson21.Tests.Dummies.MailSender;
-public class MailSenderMock
+public class MailSenderStub
 {
     public bool Send(object data) {
         return true;

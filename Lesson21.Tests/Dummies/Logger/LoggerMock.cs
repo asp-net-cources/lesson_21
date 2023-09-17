@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lesson21.Tests.Dummies.Logger;
-public class LoggerStub<TCategoryName> : ILogger<TCategoryName>
+public class LoggerMock<TCategoryName> : ILogger<TCategoryName>
 {
     public List<object> Memory { get; set; } = new List<object>();
 
