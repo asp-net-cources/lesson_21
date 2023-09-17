@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "c054888a-15df-4c6f-a056-829e04c43951",
+		"name": "Lesson21.Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6959518"
+	},
+	"item": [
+		{
+			"name": "AddProductScenario",
+			"item": [
+				{
+					"name": "CreateProductTest",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status response should be 200\", function() { pm.response.to.have.status(200) });\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Product id should be set\", function() { pm.expect(response.ID).to.not.eql(null) });\r",
+									"\r",
+									"pm.environment.set(\"product_id\", response.ID);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ID\": 0,\r\n  \"NAME\": \"{{product_name}}\",\r\n  \"DESCRIPTION\": \"{{product_description}}\",\r\n  \"PRICE\": {{product_price}},\r\n  \"PRODUCTTYPE\": \"{{product_product_type}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7203/Product/create-product",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7203",
+							"path": [
+								"Product",
+								"create-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductTest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status response should be 200\", function() { pm.response.to.have.status(200) });\r",
+									"\r",
+									"let response = pm.response.json();\r",
+									"\r",
+									"let id = pm.environment.get(\"product_id\");\r",
+									"\r",
+									"console.log(id);\r",
+									"pm.test(\"Product id should be set\", function() { pm.expect(id).to.eql(response.ID) });\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7203/Product/:id",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7203",
+							"path": [
+								"Product",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{product_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DeleteScenario",
+			"item": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "product_id",
+			"value": "-1",
+			"disabled": true
+		}
+	]
+}
